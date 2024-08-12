@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather App</title> 
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body> 
+        <header>
+            <h1>Weather App</h1>
+        </header>
+        <main> 
+            <section id="search-section">
+                <form id="search-form">
+                   <input type="text" id="city-input" list="city-list" placeholder="Enter or select a city in the format : City, Country code (ISO 3166)" required>
+                    <datalist id="city-list">
+                        <option value="Vancouver, CA">
+                        <option value="Toronto, CA">
+                        <option value="Montreal, CA">
+                        <option value="Calgary, CA">
+                        <option value="Ottawa, CA">
+                        <option value="Edmonton, CA">
+                        <option value="Winnipeg, CA">
+                        <option value="Quebec City, CA">
+                        <option value="New York, US">
+                        <option value="Los Angeles, US">
+                        <option value="Chicago, US">
+                        <option value="Houston, US">
+                        <option value="Phoenix, US">
+                    </datalist>
+                    <button id = "get-weather-button" type="submit">Get Weather</button>
+                </form>
+            </section>
+
+            <section id="weather-info">
+                <p id="weather-info-display">Enter or select a city to see the weather info</p>
+                
+                <!-- Temperature Section -->
+                <div id="temperature">
+                    <h3>Temperature</h3>
+                    <p id="temperature-display">Temperature: </p>
+                    <p id="feels-like-display">Feels like: </p>
+                    <p id="high-low-display">High: Low: </p>
+                </div>
+            
+                <!-- Humidity and Wind Section -->
+                <div id="humidity-and-wind">
+                    <h3>Humidity and Wind</h3>
+                    <p id="humidity-display">Humidity: </p>
+                    <p id="wind-speed-display">Wind Speed: </p>
+                    <p id="wind-direction-display">Wind Direction: </p>
+                    <p id="wind-gust-display">Wind Gust: </p>
+                </div>
+                
+                <!-- Forecast Section -->
+                <div id="forecast">
+                    <h3>3-Hourly 5-Day Forecast</h3>
+                    <div id="forecast-entries">
+                        <!-- Forecast entries will be dynamically inserted here -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <script type = "module" src="script.js"></script>
+    </body>
+</html>

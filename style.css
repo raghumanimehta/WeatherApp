@@ -1,0 +1,65 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #e7e4e8b0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Header styles */
+header {
+    background: #030e1a;
+    color: rgb(244, 236, 236);
+    padding-top: 60px;
+    min-height: 70px;
+    text-align: center;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Form styles */
+#search-form {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#city-input {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background: #50b3a2;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #3a8279;
+}
+
+/* Weather info styles */
+#weather-info {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* .hiddne {
+    display: none;
+} */
