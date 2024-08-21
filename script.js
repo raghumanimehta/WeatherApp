@@ -1,20 +1,23 @@
 import * as Api from './handle_api.js'
 
+function setBackground(condition) {
+    document.body.className = condition;
+}
+setBackground('sunny');
+
 
 const cityInput = document.getElementById('city-input'); // get the value of the input field/trim the value/remove any white spaces/to lower cas
 const temperatureDisplay = document.getElementById('temperature-display');
-const feelsLikeDisplay = document.getElementById('feels-like-display');
-const highLowDisplay = document.getElementById('high-low-display');
+const feelsLikeDisplay = document.getElementById('feels-like-display');const highLowDisplay = document.getElementById('high-low-display');
 const humidityDisplay = document.getElementById('humidity-display');
 const windSpeedDisplay = document.getElementById('wind-speed-display');
 const windDirectionDisplay = document.getElementById('wind-direction-display');
-const windGustDisplay = document.getElementById('wind-gust-display');
 const weatehrDescriptionDisplay = document.getElementById('weather-description-display');
-const localTimeDisplay = document.getElementById('local-time-display');
+const localTimeDisplay = document.getElementById('localTimeDisplay');
 
 const weatherIconDisplay = document.getElementById('weather-icon-display');
 
-
+weatherIconDisplay.style.display = 'block';
 
 document.getElementById('search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -39,15 +42,20 @@ async function showWeatherData(weatherInfoDisplay) {
             }
             const weatherData = await Api.getWeatherData(city, country);
             weatherInfoDisplay.textContent = city + ', ' + country;
-            // localTimeDisplay.textContent = 
-            weatehrDescriptionDisplay.textContent = weatherData.weather[0].description.charAt(0).toUpperCase() + weatherData.weather[0].description.slice(1);
-            temperatureDisplay.textContent = `Temperature: ${weatherData.main.temp}°C`;
-            feelsLikeDisplay.textContent = `Feels like: ${weatherData.main.feels_like}°C`;
-            highLowDisplay.textContent = `High: ${weatherData.main.temp_max}°C,  Low: ${weatherData.main.temp_min}°C`;
-            humidityDisplay.textContent = `Humidity: ${weatherData.main.humidity}%`;
-            windSpeedDisplay.textContent = `Wind Speed: ${weatherData.wind.speed} m/s`;
-            windDirectionDisplay.textContent = `Wind Direction: ${weatherData.wind.deg}°`;
-            windGustDisplay.textContent = `Wind Gust: ${weatherData.wind.gust ? weatherData.wind.gust + ' m/s' : 'N/A'}`;
+
+            const timezoneOffsetSeconds = weatherData.timezone_offset;
+            const utcTime = new Date().getTime();
+            const localTime = new Date(utcTime + timezoneOffsetSeconds * 1000);
+            localTimeDisplay.textContent = `Local Time: ${localTime.toLocaleTimeString('en-US', { hour12: false })}`;
+
+            weatehrDescriptionDisplay.textContent = weatherData.current.weather[0].description.charAt(0).toUpperCase() + weatherData.current.weather[0].description.slice(1);
+            temperatureDisplay.textContent = `Temperature: ${weatherData.current.temp}°C`;
+            feelsLikeDisplay.textContent = `Feels like: ${weatherData.current.feels_like}°C`;
+            humidityDisplay.textContent = `Humidity: ${weatherData.current.humidity}%`;
+            windSpeedDisplay.textContent = `Wind Speed: ${weatherData.current.wind_speed} m/s`;
+            windDirectionDisplay.textContent = `Wind Direction: ${weatherData.current.wind_deg}°`;
+            weatherIconDisplay.src = await Api.getWeatherIcon(weatherData.current.weather[0].icon);
+            // console.log(weatherData.current.weather[0].icon);  // testing remove later
 
         } catch (error) {
             weatherInfoDisplay.textContent = 'Error in fetching weather data. Please check the city name and the format and try again';
@@ -56,8 +64,9 @@ async function showWeatherData(weatherInfoDisplay) {
     }
 }
 
+
+
 // async function showForecastData(weatherInfoSection) {
 
 // }
 // Api.getForecastData('Vancouver', 'CA'); // For testing
-// getWeatherData('Mohali', 'IND'); // For testing

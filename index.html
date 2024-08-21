@@ -8,10 +8,10 @@
     </head>
     <body> 
         <header>
-            <h1>Weather App</h1>
+            <h1>Weather</h1>
         </header>
         <main> 
-            <section id="search-section">
+            <section class="drop-down" id="search-section">
                 <form id="search-form">
                    <input type="text" id="city-input" list="city-list" placeholder="Enter or select a city in the format : City, Country code (ISO 3166)" required>
                     <datalist id="city-list">
@@ -33,28 +33,32 @@
                 </form>
             </section>
 
-            <section id="weather-info">
-                <h1 id="weather-info-display">Enter or select a city to see the weather info</h1>
-                <p id = "weather-icon-display"> </p>
-                <p id = "weather-description-display"> </p>
-                <p id = "localTimeDisplay"> </p>
+            <section id="weather-info" class="weather-card">
+                <div class="outer-time">
+                    <div class="time-and-name">
+                        <img id="weather-icon-display" alt="Weather Icon">
+                        <h1 id="weather-info-display">Enter or select a city to see the weather info</h1>
+                        <p id = "weather-description-display"></p>
+                        <p id = "localTimeDisplay"> </p>
+                    </div>
+            </div>
                 <!-- Temperature Section -->
-                <div id="temperature">
+                
+                <div class="temp-and-hum">
+                    <div id="temperature" class="temperature">
                     <h3>Temperature</h3>
                     <p id="temperature-display">Temperature: </p>
                     <p id="feels-like-display">Feels like: </p>
-                    <p id="high-low-display">High: Low: </p>
-                </div>
+                    </div>
             
                 <!-- Humidity and Wind Section -->
-                <div id="humidity-and-wind">
-                    <h3>Humidity and Wind</h3>
-                    <p id="humidity-display">Humidity: </p>
-                    <p id="wind-speed-display">Wind Speed: </p>
-                    <p id="wind-direction-display">Wind Direction: </p>
-                    <p id="wind-gust-display">Wind Gust: </p>
-                </div>
-                
+                    <div id="humidity-and-wind" class = "humidity-and-wind">
+                        <h3>Humidity and Wind</h3>
+                        <p id="humidity-display">Humidity: </p>
+                        <p id="wind-speed-display">Wind Speed: </p>
+                        <p id="wind-direction-display">Wind Direction: </p>
+                    </div>
+                </div>    
                 <!-- Forecast Section -->
                 <div id="forecast">
                     <h3>3-Hourly 5-Day Forecast</h3>
