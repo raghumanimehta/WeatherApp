@@ -18,15 +18,7 @@ body {
     #24069a 40%, 
     #7c04b0 65%, 
     #bf068e 100%);
-    /* background: linear-gradient(to top right, 
-    #1d1d28 0%, 
-    #35333e 40%, 
-    #757d7b 65%, 
-    #4b9a71 100%); */
-
 }
-
-
 
 /* Header styles */
 header {
@@ -103,7 +95,6 @@ main {
 }
 
 
-
 .weather-card {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 15px;
@@ -115,31 +106,28 @@ main {
     color: #333;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
-/* .outer-time {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-bottom: 10px; */
 
 .time-and-name {
     display: block;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    margin: 0 4.5vw;
+    margin: 0 2.5vw;
 }
 
 .temp-and-hum {
-    display: flex;
-    justify-content: space-between;
+    display: block;
+    /* justify-content: space-between; */
     align-items: center;
     margin-bottom: 5px;
+    font-size: 20px;
+    padding: 0 2.5vw;
 }
-.temperature, .humidity-and-wind {
+/* .temperature, .humidity-and-wind {
     font-size: 20px;
     font-weight: normal;
     margin: 0 4.5vw;
-}
+} */
 
 
 

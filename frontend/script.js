@@ -68,11 +68,30 @@ async function showWeatherData(weatherInfoDisplay) {
             windSpeedDisplay.textContent = `Wind Speed: ${weatherData.current.wind_speed} m/s`;
             windDirectionDisplay.textContent = `Wind Direction: ${weatherData.current.wind_deg}°`;
             weatherIconDisplay.src = iconData;
+            addForecastEntries(forecastData.hourly);
         } catch (error) {
             console.error('Error:', error.message);
             weatherInfoDisplay.textContent = 'Error in fetching weather data. Please check the city name and the format and try again';
         }
     }
+}
+
+function addForecastEntries(forecastData) {
+    const forecastSection = document.getElementById('forecast-entries');
+    // forecastSection.innerHTML = '';
+
+    forecastData.forEach((entry) => {
+        const forecastEntry = document.createElement('div');
+        forecastEntry.className = 'forecast-entry';
+        forecastEntry.innerHTML = `
+            <h3>${entry.dt}</h3>
+            <p>Temperature: ${entry.temp}°C</p>
+            <p>Humidity: ${entry.humidity}%</p>
+            <p>Wind Speed: ${entry.wind_speed} m/s</p>
+            <p>Wind Direction: ${entry.wind_direction}°</p>
+        `;
+        forecastSection.appendChild(forecastEntry);
+    });
 }
 
 

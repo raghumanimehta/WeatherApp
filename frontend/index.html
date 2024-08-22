@@ -32,11 +32,11 @@
                     <button id = "get-weather-button" type="submit">Get Weather</button>
                 </form>
             </section>
-
             <section id="weather-info" class="weather-card">
                 <div class="outer-time">
                     <div class="time-and-name">
                         <img id="weather-icon-display" alt="Weather Icon">
+                        <script> document.getElementById('weather-icon-display').style.display = 'none'; </script>
                         <h1 id="weather-info-display">Enter or select a city to see the weather info</h1>
                         <p id = "weather-description-display"></p>
                         <p id = "localTimeDisplay"> </p>
@@ -45,25 +45,20 @@
                 <!-- Temperature Section -->
                 
                 <div class="temp-and-hum">
-                    <div id="temperature" class="temperature">
-                    <h3>Temperature</h3>
-                    <p id="temperature-display">Temperature: </p>
-                    <p id="feels-like-display">Feels like: </p>
-                    </div>
-            
-                <!-- Humidity and Wind Section -->
-                    <div id="humidity-and-wind" class = "humidity-and-wind">
-                        <h3>Humidity and Wind</h3>
+                        <h3>Temperature</h3>
+                        <p id="temperature-display">Temperature: </p>
+                        <p id="feels-like-display">Feels like: </p>
                         <p id="humidity-display">Humidity: </p>
                         <p id="wind-speed-display">Wind Speed: </p>
                         <p id="wind-direction-display">Wind Direction: </p>
-                    </div>
+                    
                 </div>    
                 <!-- Forecast Section -->
                 <div id="forecast">
                     <h3>3-Hourly 5-Day Forecast</h3>
                     <div id="forecast-entries">
                         <!-- Forecast entries will be dynamically inserted here -->
+
                     </div>
                 </div>
             </section>

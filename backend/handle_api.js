@@ -53,7 +53,7 @@ async function getGeoLocationData(cityName, countryName) {
         throw new Error('Invalid geolocation data');
     }
 
-    let apiUrl = forecastApi.replace('{lat}', geoData.lat).replace('{lon}', geoData.lon).replace('{API key}', apiKey);
+    let apiUrl = api.replace('{lat}', geoData.lat).replace('{lon}', geoData.lon).replace('{API key}', apiKey);
     const response = await fetch(apiUrl);
 
     if (!response.ok) {
@@ -72,3 +72,4 @@ async function getWeatherIcon(id) {
 }
 
 module.exports = { getWeatherData, getForecastData, getWeatherIcon };
+console.log(getForecastData("Vancouver", "CA"));  // testing remove later
