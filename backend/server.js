@@ -38,6 +38,13 @@ app.get('/weather', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+function shutdown() {
+    server.close(() => {
+        console.log('Server is shut down');
+    });
+}
+process.on('SIGINT', shutdown);
