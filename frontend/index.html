@@ -33,19 +33,16 @@
                 </form>
             </section>
             <section id="weather-info" class="weather-card">
-                <div class="outer-time">
+            <div class="outer-time">
                     <div class="time-and-name">
                         <img id="weather-icon-display" alt="Weather Icon">
-                        <script> document.getElementById('weather-icon-display').style.display = 'none'; </script>
                         <h1 id="weather-info-display">Enter or select a city to see the weather info</h1>
                         <p id = "weather-description-display"></p>
-                        <p id = "localTimeDisplay"> </p>
                     </div>
             </div>
                 <!-- Temperature Section -->
                 
                 <div class="temp-and-hum">
-                        <h3>Temperature</h3>
                         <p id="temperature-display">Temperature: </p>
                         <p id="feels-like-display">Feels like: </p>
                         <p id="humidity-display">Humidity: </p>
@@ -64,7 +61,11 @@
             </section>
 
         </main>
-
+        <script> 
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('weather-icon-display').style.display = 'none';
+            });
+         </script>
         <script type = "module" src="script.js"></script>
     </body>
 </html>

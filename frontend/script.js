@@ -16,8 +16,6 @@ const localTimeDisplay = document.getElementById('localTimeDisplay');
 
 const weatherIconDisplay = document.getElementById('weather-icon-display');
 
-weatherIconDisplay.style.display = 'block';
-
 document.getElementById('search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     
@@ -57,9 +55,6 @@ async function showWeatherData(weatherInfoDisplay) {
             weatherInfoDisplay.textContent = `${city}, ${country}`;
         
             const timezoneOffsetSeconds = weatherData.timezone_offset;
-            const utcTime = new Date().getTime();
-            const localTime = new Date(utcTime + timezoneOffsetSeconds * 1000);
-            localTimeDisplay.textContent = `Local Time: ${localTime.toLocaleTimeString('en-US', { hour12: false })}`;
         
             weatehrDescriptionDisplay.textContent = weatherData.current.weather[0].description.charAt(0).toUpperCase() + weatherData.current.weather[0].description.slice(1);
             temperatureDisplay.textContent = `Temperature: ${weatherData.current.temp}°C`;
@@ -67,6 +62,7 @@ async function showWeatherData(weatherInfoDisplay) {
             humidityDisplay.textContent = `Humidity: ${weatherData.current.humidity}%`;
             windSpeedDisplay.textContent = `Wind Speed: ${weatherData.current.wind_speed} m/s`;
             windDirectionDisplay.textContent = `Wind Direction: ${weatherData.current.wind_deg}°`;
+            weatherIconDisplay.textContent = 'block';
             weatherIconDisplay.src = iconData;
             addForecastEntries(forecastData.hourly);
         } catch (error) {
@@ -79,17 +75,16 @@ async function showWeatherData(weatherInfoDisplay) {
 function addForecastEntries(forecastData) {
     const forecastSection = document.getElementById('forecast-entries');
     // forecastSection.innerHTML = '';
-
+    let count = 0;
     forecastData.forEach((entry) => {
         const forecastEntry = document.createElement('div');
         forecastEntry.className = 'forecast-entry';
         forecastEntry.innerHTML = `
-            <h3>${entry.dt}</h3>
-            <p>Temperature: ${entry.temp}°C</p>
+            <h3> ${3 * ++count} hours from now</h3>
+            <p>${entry.temp}°C</p>
             <p>Humidity: ${entry.humidity}%</p>
             <p>Wind Speed: ${entry.wind_speed} m/s</p>
-            <p>Wind Direction: ${entry.wind_direction}°</p>
-        `;
+            <p>Wind Direction: ${entry.wind_direction}°</p>`;
         forecastSection.appendChild(forecastEntry);
     });
 }
