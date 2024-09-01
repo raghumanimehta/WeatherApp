@@ -44,7 +44,7 @@ const server = app.listen(PORT, () => {
 
 function shutdown() {
     server.close(() => {
-        console.log('Server is shut down');
+        console.log('Server is shutting down');
     });
 }
 process.on('SIGINT', shutdown);

@@ -43,7 +43,7 @@ async function getGeoLocationData(cityName, countryName) {
 
     const data = await response.json();
     // console.log(data);  // testing remove later 
-    console.log(data.current.weather);  // testing remove later
+    // console.log(data.current.weather);  /// testing remove later
     return data;  
 }
 
@@ -61,15 +61,15 @@ async function getGeoLocationData(cityName, countryName) {
     }
 
     const data = await response.json();
-    console.log(data);  
+    // console.log(data);  
     return data;  
 }
 
 async function getWeatherIcon(id) {
     let iconUrl = weatherIconApi.replace('{icon}', id);
-    console.log(iconUrl);  // testing remove later
+    // console.log(iconUrl);  // testing remove later
     return iconUrl;
 }
 
-module.exports = { getWeatherData, getForecastData, getWeatherIcon };
 console.log(getForecastData("Vancouver", "CA"));  // testing remove later
+module.exports = { getWeatherData, getForecastData, getWeatherIcon };
