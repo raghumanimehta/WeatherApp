@@ -1,10 +1,3 @@
-
-function setBackground(condition) {
-    document.body.className = condition;
-}
-setBackground('sunny');
-
-
 const cityInput = document.getElementById('city-input'); // get the value of the input field/trim the value/remove any white spaces/to lower cas
 const temperatureDisplay = document.getElementById('temperature-display');
 const feelsLikeDisplay = document.getElementById('feels-like-display');const highLowDisplay = document.getElementById('high-low-display');
@@ -15,15 +8,15 @@ const weatehrDescriptionDisplay = document.getElementById('weather-description-d
 const localTimeDisplay = document.getElementById('localTimeDisplay');
 
 const weatherIconDisplay = document.getElementById('weather-icon-display');
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('weather-icon-display').style.display = 'none';
+});
+
 
 document.getElementById('search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
-    
     const weatherInfoDisplay = document.getElementById('weather-info-display');
-
-
     await showWeatherData(weatherInfoDisplay);
-    // await showForecastData(weatherInfoSection, weatherInfoDisplay);
 });
 
 async function showWeatherData(weatherInfoDisplay) {
@@ -54,7 +47,6 @@ async function showWeatherData(weatherInfoDisplay) {
         
             weatherInfoDisplay.textContent = `${city}, ${country}`;
         
-            const timezoneOffsetSeconds = weatherData.timezone_offset;
         
             weatehrDescriptionDisplay.textContent = weatherData.current.weather[0].description.charAt(0).toUpperCase() + weatherData.current.weather[0].description.slice(1);
             temperatureDisplay.textContent = `Temperature: ${weatherData.current.temp}°C`;
@@ -62,7 +54,7 @@ async function showWeatherData(weatherInfoDisplay) {
             humidityDisplay.textContent = `Humidity: ${weatherData.current.humidity}%`;
             windSpeedDisplay.textContent = `Wind Speed: ${weatherData.current.wind_speed} m/s`;
             windDirectionDisplay.textContent = `Wind Direction: ${weatherData.current.wind_deg}°`;
-            weatherIconDisplay.textContent = 'block';
+            weatherIconDisplay.style.display = 'block';
             weatherIconDisplay.src = iconData;
             addForecastEntries(forecastData.hourly);
         } catch (error) {
@@ -81,17 +73,8 @@ function addForecastEntries(forecastData) {
         forecastEntry.className = 'forecast-entry';
         forecastEntry.innerHTML = `
             <h3> ${3 * ++count} hours from now</h3>
-            <p>${entry.temp}°C</p>
-            <p>Humidity: ${entry.humidity}%</p>
-            <p>Wind Speed: ${entry.wind_speed} m/s</p>
-            <p>Wind Direction: ${entry.wind_direction}°</p>`;
+            <p>${entry.weather[0].description.charAt(0).toUpperCase() + entry.weather[0].description.slice(1)}</p>
+            <p>${entry.temp}°C</p>`;
         forecastSection.appendChild(forecastEntry);
     });
 }
-
-
-
-// async function showForecastData(weatherInfoSection) {
-
-// }
-// Api.getForecastData('Vancouver', 'CA'); // For testing

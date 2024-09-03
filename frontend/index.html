@@ -33,39 +33,31 @@
                 </form>
             </section>
             <section id="weather-info" class="weather-card">
-            <div class="outer-time">
-                    <div class="time-and-name">
-                        <img id="weather-icon-display" alt="Weather Icon">
+            <div class="current">
+                <div class="time-and-name">
+                    <div id="location">
                         <h1 id="weather-info-display">Enter or select a city to see the weather info</h1>
-                        <p id = "weather-description-display"></p>
+                        <img id="flag-icon-display">
                     </div>
-            </div>
-                <!-- Temperature Section -->
-                
-                <div class="temp-and-hum">
-                        <p id="temperature-display">Temperature: </p>
-                        <p id="feels-like-display">Feels like: </p>
-                        <p id="humidity-display">Humidity: </p>
-                        <p id="wind-speed-display">Wind Speed: </p>
-                        <p id="wind-direction-display">Wind Direction: </p>
-                    
-                </div>    
-                <!-- Forecast Section -->
-                <div id="forecast">
-                    <h3>3-Hourly 5-Day Forecast</h3>
-                    <div id="forecast-entries">
-                        <!-- Forecast entries will be dynamically inserted here -->
-
-                    </div>
+                    <img id="weather-icon-display" alt="Weather Icon">
+                    <h3 id = "weather-description-display"></h3>
                 </div>
+                <div class="temp-and-hum">
+                    <p id="temperature-display"></p>
+                    <p id="feels-like-display"></p>
+                    <p id="humidity-display"></p>
+                    <p id="wind-speed-display"></p>
+                    <p id="wind-direction-display"></p>
+                </div>    
+            </div>
+            <div id="forecast">
+                <h3></h3>
+                <div id="forecast-entries">
+                </div>
+            </div>
             </section>
-
+            
         </main>
-        <script> 
-            document.addEventListener('DOMContentLoaded', function() {
-                document.getElementById('weather-icon-display').style.display = 'none';
-            });
-         </script>
         <script type = "module" src="script.js"></script>
     </body>
 </html>
