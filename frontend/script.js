@@ -26,7 +26,7 @@ async function showWeatherData(weatherInfoDisplay) {
         weatherInfoDisplay.textContent = 'Please enter a valid city name along with the country code';
     } else {
         try {
-            const [city, country] = cityInput.value.split(',').map(item => item.trim()); 
+            let [city, country] = cityInput.value.split(',').map(item => item.trim()); 
             if (!city || !country) {
                 throw new Error('Invalid city name or country code');
             }
@@ -44,9 +44,10 @@ async function showWeatherData(weatherInfoDisplay) {
             const weatherData = combinedData.weather;
             const iconData = combinedData.icon;
             const forecastData = combinedData.forecast;
-        
+
+            city = city.slice(0, 1).toUpperCase() + city.slice(1).toLowerCase();
+            country = country.toUpperCase();
             weatherInfoDisplay.textContent = `${city}, ${country}`;
-        
         
             weatehrDescriptionDisplay.textContent = weatherData.current.weather[0].description.charAt(0).toUpperCase() + weatherData.current.weather[0].description.slice(1);
             temperatureDisplay.textContent = `Temperature: ${weatherData.current.temp}°C`;

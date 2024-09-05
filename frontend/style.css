@@ -6,7 +6,7 @@
 }
 
 body {
-    overflow-y: hidden;
+    overflow-y: auto;
     font-family: 'Roboto', Arial, sans-serif;
     line-height: 2;
     color: #333;
@@ -15,43 +15,21 @@ body {
     flex-direction: column;
     align-items: center;
     background: linear-gradient(to top right, 
-        #0d47a1 0%,  /* Darker blue at the bottom */
-        #1976d2 40%,  /* Mid blue */
-        #64b5f6 65%,  /* Light blue */
-        #bbdefb 100%); /* Very light blue at the top */
-    background-attachment: fixed; /* Makes the background fixed during scroll */
+        #0d47a1 0%,
+        #1976d2 40%,
+        #64b5f6 65%,
+        #bbdefb 100%);
+    background-attachment: fixed;
     background-size: cover;
-}
-
-
-/* Adding a subtle animated background pattern */
-body::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://www.transparenttextures.com/patterns/transparent-square.png');
-    opacity: 0.2; /* Control the visibility of the pattern */
-    pointer-events: none;
-    animation: movePattern 60s linear infinite;
-}
-
-/* Animation to slowly move the pattern */
-@keyframes movePattern {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(100px, 100px);
-    }
+    padding: 5vw;
 }
 
 img {
-    width: 10%;
+    width: 4vw;
+    max-width: 70px;
     height: auto;
 }
+
 /* Header styles */
 header {
     width: 100%;
@@ -62,16 +40,18 @@ header {
     background: transparent;
     border: none;
 }
+
 h1 {
     font-size: 2.25rem;
     font-weight: 400;
-    /* margin-bottom: 1rem; */
 }
-h3{
+
+h3 {
     font-size: 1.75rem;
     font-weight: 400;
     margin-bottom: 1rem;
 }
+
 /* Main content styles */
 main {
     width: 100%;
@@ -83,8 +63,8 @@ main {
 
 /* Form styles */
 #search-form {
-    width: 90vw;
-    max-width: 1000px;
+    width: 95vw;
+    max-width: 1200px;
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
@@ -97,7 +77,8 @@ main {
     border: none;
     border-radius: 15px 0 0 15px;
     font-size: 16px;
-    width: calc(100% - 140px); 
+    width: calc(100% - 140px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #get-weather-button {
@@ -108,7 +89,8 @@ main {
     cursor: pointer;
     border-radius: 0 15px 15px 0;
     font-size: 16px;
-    width: 140px; 
+    width: 140px;
+    transition: background-color 0.3s ease;
 }
 
 #get-weather-button:hover {
@@ -117,30 +99,20 @@ main {
 
 /* Weather info styles */
 #weather-info {
-    width: 90vw;
-    max-width: 1000px;
-    height: 70vh;
-    max-height: 1000px;
+    width: 95vw;
+    max-width: 1200px;
+    height: auto;
+    max-height: 70vh;
     overflow-y: auto;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-
-#location{
+#location {
     display: flex;
-}
-
-.weather-card {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
-    padding: 30px;
-    margin-bottom: 30px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #333;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 .time-and-name {
@@ -148,72 +120,96 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    /* margin: 0 2.0vw; */
 }
 
 .temp-and-hum {
-    /* display: block; */
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
-    font-size: 20px;
-    /* padding: 0 2.5vw; */
+    font-size: 1.55rem;
+    font-weight: bold;
 }
 
 #forecast-entries {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 10px;
     margin-bottom: 5px;
     border-radius: 5px;
-    overflow-x: auto; 
+    overflow-x: auto;
+    padding-bottom: 10px;
 }
 
 .forecast-entry {
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     width: 250px;
     flex-shrink: 0;
-    flex-grow: 0;
     background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
-    text-align: center; 
-    margin-right: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
 }
 
 .forecast-entry:hover {
-    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .forecast-entry h3 {
-    font-size: 1.25rem;
-    color: #f7f7f7;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-.forecast-entry p {
     font-size: 1.1rem;
     color: #f7f7f7;
     margin-bottom: 5px;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-
-
-#forecast-entries h3 {
+.forecast-entry p {
     font-size: 1rem;
-    line-height: 1.2;
-}
-#forecast-entries p {
-    font-size: 1rem;
-    line-height: 2;
+    color: #f7f7f7;
+    margin-bottom: 3px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Utility classes */
 .hidden {
     display: none;
+}
+
+/* Subtle responsive adjustments */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 3vw;
+    }
+
+    #search-form {
+        flex-direction: column;
+    }
+
+    #city-input, #get-weather-button {
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+
+    .forecast-entry {
+        width: 200px;
+    }
+}
+
+/* Subtle scrollbar styling */
+#forecast-entries::-webkit-scrollbar {
+    height: 8px;
+}
+
+#forecast-entries::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+#forecast-entries::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
