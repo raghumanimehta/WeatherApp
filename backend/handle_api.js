@@ -42,11 +42,10 @@ async function getGeoLocationData(cityName, countryName) {
     }
 
     const data = await response.json();
-    // console.log(data);  // testing remove later 
-    // console.log(data.current.weather);  /// testing remove later
     return data;  
 }
 
+// Effect: get the forecast data from the API throws error for the caller to handle in case forecast data can't be retrieved
  async function getForecastData(cityName, countryName) {
     const geoData = await getGeoLocationData(cityName, countryName, apiKey);
     if (!geoData || !geoData.lat || !geoData.lon) {
@@ -61,15 +60,13 @@ async function getGeoLocationData(cityName, countryName) {
     }
 
     const data = await response.json();
-    // console.log(data);  
     return data;  
 }
 
+// Effect: get the weather icon from the API
 async function getWeatherIcon(id) {
     let iconUrl = weatherIconApi.replace('{icon}', id);
-    // console.log(iconUrl);  // testing remove later
     return iconUrl;
 }
 
-console.log(getForecastData("Vancouver", "CA"));  // testing remove later
 module.exports = { getWeatherData, getForecastData, getWeatherIcon };
