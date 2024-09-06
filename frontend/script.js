@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('weather-icon-display').style.display = 'none';
 });
 
+const body = document.querySelector('body');
+body.classList.add('default');
 
 document.getElementById('search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -19,6 +21,7 @@ document.getElementById('search-form').addEventListener('submit', async (event) 
     await showWeatherData(weatherInfoDisplay);
 });
 
+// Effect: show the weather data on the page
 async function showWeatherData(weatherInfoDisplay) {
     weatherInfoDisplay.style.display = 'block';
 
@@ -44,6 +47,11 @@ async function showWeatherData(weatherInfoDisplay) {
             const weatherData = combinedData.weather;
             const iconData = combinedData.icon;
             const forecastData = combinedData.forecast;
+            const timezone_offset = weatherData.timezone_offset;
+            const sunsetTime = weatherData.current.sunset;
+            const sunriseTime = weatherData.current.sunrise;
+
+            setBackground(timezone_offset, sunsetTime, sunriseTime);
 
             city = city.slice(0, 1).toUpperCase() + city.slice(1).toLowerCase();
             country = country.toUpperCase();
@@ -57,6 +65,7 @@ async function showWeatherData(weatherInfoDisplay) {
             windDirectionDisplay.textContent = `Wind Direction: ${weatherData.current.wind_deg}°`;
             weatherIconDisplay.style.display = 'block';
             weatherIconDisplay.src = iconData;
+
             addForecastEntries(forecastData.hourly);
         } catch (error) {
             console.error('Error:', error.message);
@@ -65,6 +74,24 @@ async function showWeatherData(weatherInfoDisplay) {
     }
 }
 
+// Effect: set the background of the page based on the time of the day
+function setBackground(timezoneOffset, sunsetTime, sunriseTime) {
+    const currentTimeUTC = new Date();
+    const sunriseLocal = new Date((sunriseTime + timezoneOffset) * 1000);
+    const sunsetLocal = new Date((sunsetTime + timezoneOffset) * 1000);
+    const currentLocalTimeForLocation = new Date(currentTimeUTC.getTime() + timezoneOffset * 1000);
+
+    const body = document.querySelector('body');
+    if (currentLocalTimeForLocation >= sunriseLocal && currentLocalTimeForLocation < sunsetLocal) {
+        body.classList.add('daytime');
+        body.classList.remove('nighttime');
+    } else {
+        body.classList.add('nighttime');
+        body.classList.remove('daytime');
+    }
+}
+
+// Effect: add forecast entries to the forecast section
 function addForecastEntries(forecastData) {
     const forecastSection = document.getElementById('forecast-entries');
     // forecastSection.innerHTML = '';

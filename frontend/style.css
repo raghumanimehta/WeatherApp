@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-body {
+body.default {
     overflow-y: auto;
     font-family: 'Roboto', Arial, sans-serif;
     line-height: 2;
@@ -22,6 +22,72 @@ body {
     background-attachment: fixed;
     background-size: cover;
     padding: 5vw;
+}
+
+body.daytime {
+    overflow-y: auto;
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 2;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to top right, 
+        #0d47a1 0%,
+        #1976d2 40%,
+        #64b5f6 65%,
+        #bbdefb 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 5vw;
+}
+
+
+
+body.nighttime {
+    overflow-y: auto;
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 2;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(circle at top left,
+        #3c4e60 0%,
+        #2c3e50 30%,
+        #1a2a3a 60%,
+        #0f2027 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 5vw;
+}
+
+body.nighttime img {
+    filter: brightness(1.5) contrast(1.5);
+}
+
+body.nighttime #city-input {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+body.nighttime #city-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.nighttime .forecast-entry {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.nighttime #get-weather-button {
+    background: #3a8279;
+}
+
+body.nighttime #get-weather-button:hover {
+    background: #2c6359;
 }
 
 img {
@@ -213,3 +279,7 @@ main {
 #forecast-entries::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255, 255, 255, 0.5);
 }
+/* Existing styles remain the same */
+
+
+/* Rest of the existing styles remain the same */
